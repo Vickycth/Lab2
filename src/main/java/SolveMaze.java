@@ -10,6 +10,11 @@ import edu.illinois.cs.cs125.lib.mazemaker.Maze;
 @SuppressWarnings("checkstyle:emptyblock")
 public class SolveMaze {
 
+    }
+
+
+
+
     /**
      * Implement your maze solving algorithm in the main method below.
      *
@@ -22,7 +27,8 @@ public class SolveMaze {
          */
         Maze maze = new Maze(10, 10);
 
-        /*
+
+            /*
          * Pick (0, 0), the bottom left corner, as the starting point.
          * Put the end in the top right corner.
          */
@@ -34,7 +40,26 @@ public class SolveMaze {
          * Feel free to adjust this number if you experiment with other mazes.
          */
         for (int step = 0; step < 1000; step++) {
-            // Implement your maze solving algorithm here
+            while (maze.isFinished() == false) {
+                if (maze.canMove() == false) {
+                    maze.turnRight();
+                    maze.move();
+                    if(maze.canMove()==false) {
+                        maze.turnLeft();
+                        maze.move();
+                    }
+
+
+                    if(maze.isFinished()==true){
+                        return;
+                }
+                if (maze.canMove() == false) {
+                    maze.turnLeft();
+                    maze.move();
+                    if(maze.isFinished()==true){
+                        return;
+                    }
+                } // Implement your maze solving algorithm here
         }
 
         if (maze.isFinished()) {
